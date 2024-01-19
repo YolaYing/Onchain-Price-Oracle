@@ -1,0 +1,22 @@
+specVersion: 0.0.2
+apiVersion: 0.0.2
+name: eg_event
+description: "This an onchain price oracle, conducting trustless compute of pricing."
+repository: https://github.com/YolaYing/Onchain-Price-Oracle
+dataSources:
+  - kind: ethereum
+    network: sepolia
+    event:
+      - address: '0x7169D38820dfd117C3FA1f22a697dBA58d90BA06'
+        events: 
+          - "Transfer(address,address,uint256)"
+
+mapping:
+  language: wasm/assemblyscript
+  file: ./mapping.ts
+  handler: handleBlocks
+
+dataDestinations:
+  - kind: ethereum
+    network: sepolia
+    address: "0x0000000000000000000000000000000000000001"
